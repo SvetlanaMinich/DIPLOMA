@@ -1,0 +1,32 @@
+# FastAPI and server
+fastapi
+uvicorn[standard]
+python-multipart
+gunicorn
+
+# Database
+sqlalchemy
+asyncpg
+alembic
+
+# Authentication and security
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+
+# Pydantic and validation
+pydantic
+pydantic-settings
+email-validator
+
+# OpenRouter API (LLM integration)
+openai
+
+# Document processing
+python-docx
+PyPDF2
+reportlab
+
+# Testing
+pytest
+pytest-asyncio

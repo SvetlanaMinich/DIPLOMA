@@ -1,0 +1,1 @@
+"""AutoSTP Backend Application."""

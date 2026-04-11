@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: autostp_postgres
+    environment:
+      POSTGRES_USER: autostp
+      POSTGRES_PASSWORD: autostp_password
+      POSTGRES_DB: autostp_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U autostp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - autostp_network
+
+  # Backend API
+  backend:
+    build:
+      context: ../backend
+      dockerfile: ../docker/Dockerfile.backend
+    container_name: autostp_backend
+    environment:
+      DATABASE_URL: postgresql+asyncpg://autostp:autostp_password@postgres:5432/autostp_db
+      DEBUG: "true"
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-key-change-in-production}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ../backend:/app
+      - uploads:/app/uploads
+      - ./backend.Dockerfile:/app/Dockerfile  # For hot reload
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - autostp_network
+
+  # Frontend (will be added in Stage 3)
+  # frontend:
+  #   build:
+  #     context: ../frontend
+  #     dockerfile: ../docker/Dockerfile.frontend
+  #   container_name: autostp_frontend
+  #   volumes:
+  #     - ../frontend:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - autostp_network
+
+  # Nginx (will be added for production)
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: autostp_nginx
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #   networks:
+  #     - autostp_network
+
+volumes:
+  postgres_data:
+    driver: local
+  uploads:
+    driver: local
+
+networks:
+  autostp_network:
+    driver: bridge
