@@ -46,6 +46,7 @@ env/
 *.db
 *.sqlite
 *.sqlite3
+alembic/
 
 # Logs
 *.log
@@ -87,3 +88,6 @@ uploads/
 
 # Misc
 .cache/
+
+*.md
+docs/

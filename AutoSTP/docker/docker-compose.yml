@@ -31,7 +31,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://autostp:autostp_password@postgres:5432/autostp_db
       DEBUG: "true"
       SECRET_KEY: ${SECRET_KEY:-dev-secret-key-change-in-production}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
     volumes:
       - ../backend:/app
       - uploads:/app/uploads

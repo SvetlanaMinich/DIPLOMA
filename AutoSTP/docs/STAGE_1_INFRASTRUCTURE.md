@@ -242,7 +242,7 @@ AutoSTP/
 
 2. **backend**
    - Build: из Dockerfile.backend
-   - Environment: DATABASE_URL, DEBUG, SECRET_KEY, OPENAI_API_KEY
+   - Environment: DATABASE_URL, DEBUG, SECRET_KEY, OPENROUTER_API_KEY
    - Volumes: mount backend code для hot-reload, uploads
    - Ports: 8000
    - Depends on: postgres (healthcheck)

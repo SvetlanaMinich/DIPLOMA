@@ -1,0 +1,641 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "description": "Универсальная схема шаблона форматирования пояснительной записки. Все поля описывают ОДНО правило оформления. null = не задано/используется дефолт движка. Заполняй только известные значения — движок форматирования проверяет null перед применением."
+  },
+
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margin_left_mm": 30,
+    "margin_right_mm": 15,
+    "margin_top_mm": 20,
+    "margin_bottom_mm": 20,
+    "page_number_pos": "bottom_right",
+    "page_number_font_size_pt": null,
+    "page_number_font_family": null,
+    "first_page_numbered": false,
+    "pages_counted_not_numbered": ["title_page", "abstract", "task"],
+    "hyphenation_in_body": true,
+    "hyphenation_in_headings": false,
+    "hyphenation_in_tables": false,
+    "hyphenation_in_captions": false
+  },
+
+  "fonts": {
+    "main_family": "Times New Roman",
+    "main_size_pt": 14,
+    "main_bold": false,
+    "main_italic": false,
+    "line_height_multiple": 1.0,
+    "line_height_pt": 18,
+    "paragraph_indent_mm": 12.5,
+    "text_alignment": "justify",
+    "latin_formula_italic": true,
+    "cyrillic_formula_italic": false,
+    "greek_formula_italic": false
+  },
+
+  "headers": {
+    "_comment": "Нумерованные заголовки разделов — от абзацного отступа, по левому краю. Ненумерованные (Введение, Заключение, Содержание, Реферат, Список, Приложения) — по центру без абзацного отступа.",
+
+    "numbered_alignment": "left",
+    "unnumbered_alignment": "center",
+    "unnumbered_no_paragraph_indent": true,
+
+    "level_1": {
+      "font_family": null,
+      "font_size_pt": 14,
+      "bold": true,
+      "italic": false,
+      "underline": false,
+      "uppercase": true,
+      "numbered": true,
+      "number_separator": null,
+      "number_has_trailing_dot": false,
+      "new_page": true,
+      "spacing_before_lines": 0,
+      "spacing_after_lines": 1,
+      "indent_from_paragraph": true,
+      "multiline_align_to_first_char": true,
+      "no_period_at_end": true,
+      "two_sentences_separated_by_dot": true
+    },
+
+    "level_2": {
+      "font_family": null,
+      "font_size_pt": 14,
+      "bold": true,
+      "italic": false,
+      "underline": false,
+      "uppercase": false,
+      "first_letter_uppercase": true,
+      "numbered": true,
+      "number_format": "section.subsection",
+      "number_has_trailing_dot": false,
+      "new_page": false,
+      "spacing_before_lines": 0,
+      "spacing_after_lines": 1,
+      "indent_from_paragraph": true,
+      "multiline_align_to_first_char": true,
+      "no_period_at_end": true,
+      "move_to_next_page_if_no_body_fits": true
+    },
+
+    "level_3": {
+      "font_family": null,
+      "font_size_pt": 14,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "uppercase": false,
+      "first_letter_uppercase": true,
+      "numbered": true,
+      "number_format": "section.subsection.point",
+      "number_has_trailing_dot": false,
+      "has_heading": false,
+      "new_page": false,
+      "spacing_before_lines": 0,
+      "spacing_after_lines": 1
+    },
+
+    "level_4": {
+      "font_family": null,
+      "font_size_pt": 14,
+      "bold": false,
+      "italic": false,
+      "uppercase": false,
+      "numbered": true,
+      "number_format": "section.subsection.point.subpoint",
+      "number_has_trailing_dot": false,
+      "has_heading": false,
+      "new_page": false
+    }
+  },
+
+  "table_of_contents": {
+    "title": "СОДЕРЖАНИЕ",
+    "title_uppercase": true,
+    "title_bold": true,
+    "title_font_size_pt": 14,
+    "title_font_size_pt_max": 16,
+    "title_alignment": "center",
+    "spacing_after_title_lines": 1,
+    "indent_per_level_chars": 2,
+    "dot_leader": true,
+    "page_number_column": "right",
+    "include_level_1": true,
+    "include_level_2": true,
+    "include_level_3": false,
+    "include_appendices": true,
+    "include_references": true,
+    "include_document_list": true,
+    "placed_after": "task"
+  },
+
+  "lists": {
+    "simple": {
+      "marker": "–",
+      "each_item_new_line": true,
+      "indent_type": "paragraph_indent",
+      "item_end_punctuation": ";",
+      "last_item_end_punctuation": ".",
+      "inline_allowed": true,
+      "inline_separator": ","
+    },
+
+    "complex_numbered": {
+      "marker_type": "arabic_no_bracket",
+      "each_item_new_line": true,
+      "indent_type": "paragraph_indent",
+      "first_letter_uppercase": true,
+      "item_end_punctuation": "."
+    },
+
+    "lettered": {
+      "marker_type": "cyrillic_lowercase_bracket",
+      "marker_example": "а)",
+      "each_item_new_line": true,
+      "indent_type": "paragraph_indent",
+      "item_end_punctuation": ";"
+    },
+
+    "sub_lettered": {
+      "marker_type": "arabic_bracket",
+      "marker_example": "1)",
+      "each_item_new_line": true,
+      "indent_type": "paragraph_indent_level_2",
+      "item_end_punctuation": ";"
+    },
+
+    "intro_phrase_must_not_end_with_preposition": true
+  },
+
+  "text_rules": {
+    "numbers_1_to_9_without_units_as_words": true,
+    "numbers_above_9_as_digits": true,
+    "fractions_as_decimal": true,
+    "ordinal_numbers_with_inflection": true,
+    "math_signs_without_values_as_words": true,
+    "range_unit_after_last_value": true,
+    "no_dash_before_number_with_unit": true,
+    "physical_units_standard": "ГОСТ 8.417–2002",
+    "no_foreign_terms_if_russian_exists": true,
+    "language_style_mandatory_words": ["должен", "следует", "необходимо", "не допускается", "запрещается"],
+    "language_style_permissive_words": ["допускают", "указывают", "применяют"]
+  },
+
+  "formulas": {
+    "alignment": "center",
+    "placed_on_separate_line": true,
+    "spacing_before_lines": 1,
+    "spacing_after_lines": 1,
+    "simple_formula_spacing_intervals": 6,
+    "complex_formula_spacing_intervals": 8,
+    "inline_allowed_for_short_aux": true,
+    "multi_formula_per_line_separator": ";",
+
+    "numbering": {
+      "style": "per_section",
+      "format": "(section.number)",
+      "example": "(2.7)",
+      "appendix_format": "(AppLetter.number)",
+      "appendix_example": "(Б.2)",
+      "continuous_allowed": true,
+      "position": "right_margin",
+      "number_in_parentheses": true,
+      "fraction_number_at_mid_bar": true,
+      "multiline_number_at_last_line": true
+    },
+
+    "explanation": {
+      "starts_with_word": "где",
+      "no_colon_after_where": true,
+      "from_new_line": true,
+      "no_paragraph_indent": true,
+      "symbol_separator": "–",
+      "symbols_aligned": true,
+      "each_entry_ends_with": ";",
+      "unit_at_end_of_entry": true,
+      "unit_separator": ",",
+      "alternative_start": "здесь",
+      "alternative_with_period_before": true
+    },
+
+    "citation_style": "word_plus_number_in_parens",
+    "citation_words": ["формула", "уравнение", "выражение", "равенство", "передаточная функция"],
+
+    "wrap": {
+      "allowed": true,
+      "operator_repeated_at_wrap": true,
+      "multiplication_sign_at_wrap": "×",
+      "no_wrap_on_division": true,
+      "no_wrap_on_root_integral_log_trig": true
+    }
+  },
+
+  "images": {
+    "universal_term": "Рисунок",
+    "alignment": "center",
+    "spacing_before_lines": 1,
+    "spacing_after_caption_lines": 1,
+    "recommended_sizes_mm": [
+      {"width": 92, "height": 150},
+      {"width": 150, "height": 240}
+    ],
+    "placed_after_first_reference_paragraph": true,
+    "multiple_per_page_allowed": true,
+    "orientation_max_rotation_deg": 90,
+
+    "caption": {
+      "pos": "bottom",
+      "alignment": "center",
+      "prefix_word": "Рисунок",
+      "prefix_no_abbreviation": true,
+      "separator": "–",
+      "numbering_style": "continuous",
+      "numbering_style_alt": "per_section",
+      "number_format_continuous": "Рисунок N",
+      "number_format_per_section": "Рисунок N.M",
+      "appendix_format": "Рисунок А.2",
+      "no_period_after_number": true,
+      "title_starts_uppercase": true,
+      "no_period_at_end": true,
+      "example": "Рисунок 2.1 – Структурная схема нескорректированной системы управления",
+      "multipage_label": "лист N"
+    },
+
+    "inline_explanations": {
+      "position": "between_image_and_caption",
+      "separator": ";",
+      "no_decode_if_explained_in_text": true
+    },
+
+    "inscription_min_height_mm": 2.5,
+    "uppercase_1_3_larger_than_lowercase": true,
+    "reference_in_text_mandatory": true,
+    "uniform_style_throughout": true
+  },
+
+  "tables": {
+    "caption": {
+      "pos": "top",
+      "alignment": "left",
+      "aligned_to": "table_left_border",
+      "word": "Таблица",
+      "word_no_abbreviation": true,
+      "separator": "–",
+      "numbering_style": "continuous",
+      "numbering_style_alt": "per_section",
+      "number_format_per_section": "Таблица N.M",
+      "appendix_format": "Таблица Б.2",
+      "example": "Таблица 2 – Заголовок таблицы"
+    },
+
+    "spacing_before_lines": 1,
+    "spacing_after_lines": 1,
+    "caption_to_table_spacing_lines": 0,
+
+    "borders": {
+      "left": true,
+      "right": true,
+      "bottom": true,
+      "top": true,
+      "omit_bottom_if_continues": true
+    },
+
+    "header_row": {
+      "bold": true,
+      "uppercase_first_letter": true,
+      "nominative_case_singular": true,
+      "no_period_at_end": true,
+      "no_abbreviations": true,
+      "no_diagonal_split_cell": true
+    },
+
+    "subheader_row": {
+      "lowercase_unless_independent": true
+    },
+
+    "body": {
+      "no_empty_cells": true,
+      "empty_cell_placeholder": "–",
+      "numbers_aligned_by_digit_position": true,
+      "numbers_of_different_units_centered": true,
+      "decimal_places_consistent_per_column": true,
+      "no_order_number_column": true
+    },
+
+    "continuation": {
+      "label": "Продолжение таблицы",
+      "repeat_header": true,
+      "header_replaceable_by_column_numbers": true
+    },
+
+    "notes": {
+      "placement": "end_of_table_above_bottom_line"
+    },
+
+    "split_narrow_table_side_by_side": true,
+    "split_separator": "double_line"
+  },
+
+  "appendix": {
+    "letter_sequence_start": "А",
+    "excluded_letters": ["Ё", "З", "Й", "О", "Ч", "Ъ", "Ы", "Ь"],
+    "new_page": true,
+
+    "header": {
+      "word": "ПРИЛОЖЕНИЕ",
+      "word_uppercase": true,
+      "word_alignment": "center",
+      "letter_on_same_line_as_word": true
+    },
+
+    "type_label": {
+      "position": "below_header",
+      "in_parentheses": true,
+      "lowercase": true,
+      "variants": ["обязательное", "рекомендуемое", "справочное"]
+    },
+
+    "title": {
+      "position": "below_type_label",
+      "alignment": "center",
+      "first_letter_uppercase": true,
+      "optional_backref": true
+    },
+
+    "internal_numbering": {
+      "formulas": "AppLetter.N",
+      "figures": "AppLetter.N",
+      "tables": "AppLetter.N",
+      "restart_per_appendix": true
+    },
+
+    "included_in_page_numbering": true,
+    "reference_mandatory_in_text": true,
+    "ordered_by_reference_order": true,
+    "single_appendix_label": "ПРИЛОЖЕНИЕ А"
+  },
+
+  "bibliography": {
+    "title": "СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ",
+    "title_uppercase": true,
+    "title_bold": null,
+    "title_alignment": "center",
+    "title_new_page": true,
+    "standard": "ГОСТ 7.1–2003",
+
+    "citation_style": {
+      "type": "square_brackets_number",
+      "example": "[6]",
+      "ordered_ascending": true,
+      "period_after_closing_bracket_if_sentence_end": true,
+      "no_orphan_bracket_at_line_start": true
+    },
+
+    "entry_ordering": "order_of_appearance",
+
+    "formatting_rules": {
+      "lastname_initials_separator": ",",
+      "initials_separator": " ",
+      "publication_type_lowercase": true,
+      "bibliographic_signs_spaces": "both_sides",
+      "bibliographic_signs": [":", ";", "–", "/"],
+      "city_minsk_full_form": true,
+      "no_abbreviated_city_minsk": true
+    },
+
+    "placement": "before_appendices"
+  },
+
+  "footnotes": {
+    "marker_style": "arabic_with_closing_bracket",
+    "marker_example": "1)",
+    "marker_position": "superscript_right_top_of_word",
+    "separator_line": "short_horizontal",
+    "text_from_paragraph_indent": true,
+    "marker_repeated_below": true
+  },
+
+  "notes": {
+    "word": "Примечание",
+    "word_first_letter_uppercase": true,
+    "placement": "after_related_material",
+    "indent": "paragraph_indent",
+    "single_format": "Примечание – текст с прописной буквы",
+    "multiple_format": "numbered_arabic",
+    "table_note_position": "end_of_table_above_bottom_line"
+  },
+
+  "abbreviations_section": {
+    "title_hints": ["ПЕРЕЧЕНЬ УСЛОВНЫХ ОБОЗНАЧЕНИЙ", "Перечень условных обозначений, символов и терминов"],
+    "required": false,
+    "placement": "before_introduction"
+  },
+
+  "title_page": {
+    "university_name_full": "Белорусский государственный университет информатики и радиоэлектроники",
+    "department_no_abbreviation": true,
+    "faculty_no_abbreviation": true,
+    "topic_uppercase": true,
+    "topic_matches_order_exactly": true,
+    "document_code_format": "БГУИР ДП 1-XX XX XX XX XXX ПЗ",
+    "signatures_required": ["студент", "руководитель", "консультанты"],
+    "page_counted": true,
+    "page_numbered": false
+  },
+
+  "abstract": {
+    "title": "РЕФЕРАТ",
+    "title_uppercase": true,
+    "title_bold": true,
+    "title_alignment": "center",
+    "page_counted": true,
+    "page_numbered": false,
+    "max_length_chars": 1200,
+    "recommended_length_chars": 850,
+    "standard": "ГОСТ 7.9–95",
+    "structure": ["heading_part", "abstract_part"],
+    "heading_part_includes": ["topic_name", "author", "output_data"],
+    "abstract_part_includes": ["subject", "goal", "methods", "results", "conclusions"]
+  },
+
+  "introduction": {
+    "title": "ВВЕДЕНИЕ",
+    "title_uppercase": true,
+    "title_alignment": "center",
+    "title_no_paragraph_indent": true,
+    "max_pages": 2,
+    "new_page": true
+  },
+
+  "conclusion": {
+    "title": "ЗАКЛЮЧЕНИЕ",
+    "title_uppercase": true,
+    "title_alignment": "center",
+    "title_no_paragraph_indent": true,
+    "new_page": true
+  },
+
+  "work_structure": [
+    {
+      "role": "title_page",
+      "title_hints": ["Титульный лист"],
+      "required": true,
+      "heading_level": null,
+      "counted_in_pagination": true,
+      "page_number_shown": false,
+      "new_page": true,
+      "min_pages": 1,
+      "max_pages": 1
+    },
+    {
+      "role": "abstract",
+      "title_hints": ["РЕФЕРАТ", "Реферат"],
+      "required": true,
+      "heading_level": null,
+      "counted_in_pagination": true,
+      "page_number_shown": false,
+      "new_page": true,
+      "min_pages": 1,
+      "max_pages": 1
+    },
+    {
+      "role": "task",
+      "title_hints": ["Задание по дипломному проекту", "Задание"],
+      "required": true,
+      "heading_level": null,
+      "counted_in_pagination": true,
+      "page_number_shown": false,
+      "new_page": true,
+      "min_pages": 2,
+      "max_pages": 2
+    },
+    {
+      "role": "contents",
+      "title_hints": ["СОДЕРЖАНИЕ"],
+      "required": true,
+      "heading_level": null,
+      "title_uppercase": true,
+      "title_bold": true,
+      "title_alignment": "center",
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true,
+      "placed_after": "task"
+    },
+    {
+      "role": "abbreviations",
+      "title_hints": ["ПЕРЕЧЕНЬ УСЛОВНЫХ ОБОЗНАЧЕНИЙ", "Перечень условных обозначений, символов и терминов"],
+      "required": false,
+      "heading_level": null,
+      "title_alignment": "center",
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true
+    },
+    {
+      "role": "introduction",
+      "title_hints": ["ВВЕДЕНИЕ", "ПРЕДИСЛОВИЕ"],
+      "required": true,
+      "heading_level": null,
+      "title_uppercase": true,
+      "title_alignment": "center",
+      "title_no_paragraph_indent": true,
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true,
+      "max_pages": 2
+    },
+    {
+      "role": "main_body",
+      "title_hints": [],
+      "required": true,
+      "heading_level": 1,
+      "title_uppercase": true,
+      "title_bold": true,
+      "title_alignment": "left",
+      "numbered": true,
+      "new_page": true,
+      "has_subsections": true,
+      "subsection_heading_level": 2
+    },
+    {
+      "role": "tech_economy",
+      "title_hints": ["Технико-экономическое обоснование", "Экономический раздел"],
+      "required": false,
+      "heading_level": 1,
+      "title_uppercase": true,
+      "title_bold": true,
+      "title_alignment": "left",
+      "numbered": true,
+      "new_page": true,
+      "max_percent_of_total": 18
+    },
+    {
+      "role": "safety_ecology",
+      "title_hints": ["Охрана труда", "Экологическая безопасность", "Энерго- и ресурсосбережение"],
+      "required": false,
+      "heading_level": 1,
+      "title_uppercase": true,
+      "title_bold": true,
+      "title_alignment": "left",
+      "numbered": true,
+      "new_page": true,
+      "max_percent_of_total_min": 5,
+      "max_percent_of_total_max": 7
+    },
+    {
+      "role": "conclusion",
+      "title_hints": ["ЗАКЛЮЧЕНИЕ"],
+      "required": true,
+      "heading_level": null,
+      "title_uppercase": true,
+      "title_alignment": "center",
+      "title_no_paragraph_indent": true,
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true
+    },
+    {
+      "role": "references",
+      "title_hints": ["СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ"],
+      "required": true,
+      "heading_level": null,
+      "title_uppercase": true,
+      "title_alignment": "center",
+      "title_no_paragraph_indent": true,
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true
+    },
+    {
+      "role": "appendices",
+      "title_hints": ["ПРИЛОЖЕНИЕ"],
+      "required": false,
+      "heading_level": null,
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true
+    },
+    {
+      "role": "document_list",
+      "title_hints": ["ВЕДОМОСТЬ ДОКУМЕНТОВ", "Ведомость документов"],
+      "required": true,
+      "heading_level": null,
+      "counted_in_pagination": true,
+      "page_number_shown": true,
+      "new_page": true
+    }
+  ],
+
+  "volume_requirements": {
+    "total_pages_without_reference_appendices_min": 60,
+    "total_pages_without_reference_appendices_max": 80,
+    "binding": "hard_cover"
+  },
+
+  "extra_rules": []
+}

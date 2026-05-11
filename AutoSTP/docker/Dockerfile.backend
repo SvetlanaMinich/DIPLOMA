@@ -5,11 +5,17 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install runtime and build dependencies
+# Install runtime and build dependencies + LaTeX + Pandoc
 RUN apt-get update && apt-get install -y \
     gcc \
     postgresql-client \
     libpq-dev \
+    pandoc \
+    texlive-xetex \
+    texlive-lang-cyrillic \
+    texlive-fonts-recommended \
+    texlive-latex-extra \
+    fonts-freefont-ttf \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies

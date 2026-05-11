@@ -32,14 +32,27 @@ class Settings(BaseSettings):
     CORS_ALLOW_METHODS: List[str] = ["*"]
     CORS_ALLOW_HEADERS: List[str] = ["*"]
 
-    # OPENROUTER API
+    # OpenRouter (OpenAI-compatible, https://openrouter.ai/api/v1)
     OPENROUTER_API_KEY: Optional[str] = None
-    OPENROUTER_MODEL: str = "llama3-8b"
+    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
+    OPENROUTER_MODEL: str = "google/gemma-4-31b-it:free"
+    OPENROUTER_TEMPERATURE: float = 0.7
+    OPENROUTER_MAX_TOKENS: int = 4096
+    OPENROUTER_TIMEOUT_SECONDS: float = 120.0
+    OPENROUTER_MAX_RETRIES: int = 4
+    OPENROUTER_RETRY_BASE_SECONDS: float = 1.0
+    OPENROUTER_HTTP_REFERER: str = "http://localhost:8000"
+    OPENROUTER_APP_TITLE: str = "AutoSTP"
 
     # File storage
     UPLOAD_DIR: str = "./uploads"
     MAX_UPLOAD_SIZE_MB: int = 30
     ALLOWED_FILE_EXTENSIONS: List[str] = [".docx", ".txt"]
+
+    # Rate limiting
+    RATE_LIMIT_ENABLED: bool = True
+    RATE_LIMIT_LOGIN: str = "20/minute"
+    RATE_LIMIT_SEGMENT: str = "10/minute"
 
     # Auto-save
     AUTO_SAVE_INTERVAL_SECONDS: int = 300  # 5 minutes
@@ -51,10 +64,10 @@ class Settings(BaseSettings):
     PRICING_TEMPLATE_PRICE: float = 10.0
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(".env", "../.env"),
         env_file_encoding="utf-8",
         case_sensitive=True,
-        extra="ignore"
+        extra="ignore",
     )
 
 

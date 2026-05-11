@@ -28,6 +28,7 @@ class DocumentWorkflowStatus(str, PyEnum):
 
     DRAFT = "draft"
     IN_PROGRESS = "inpr"
+    FORMATTED = "formatted"
     COMPLETED = "com"
 
 

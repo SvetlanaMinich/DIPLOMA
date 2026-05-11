@@ -3,11 +3,15 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
+from app.api.v1.api import api_router
 from app.core.config import settings
 from app.core.database import Base, engine
+from app.core.limiter import limiter
 
-import app.models 
+import app.models
 
 
 @asynccontextmanager
@@ -33,6 +37,9 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
@@ -41,6 +48,8 @@ app.add_middleware(
     allow_methods=settings.CORS_ALLOW_METHODS,
     allow_headers=settings.CORS_ALLOW_HEADERS,
 )
+
+app.include_router(api_router, prefix="/api/v1")
 
 
 @app.get("/")
@@ -80,8 +89,3 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 
-# Import routers (will be implemented in later stages)
-# from app.api.v1 import auth, documents, templates
-# app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
-# app.include_router(documents.router, prefix="/api/v1/documents", tags=["Documents"])
-# app.include_router(templates.router, prefix="/api/v1/templates", tags=["Templates"])

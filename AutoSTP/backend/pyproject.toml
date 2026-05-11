@@ -38,6 +38,9 @@ addopts = "-ra -q --strict-markers"
 testpaths = ["tests"]
 pythonpath = ["."]
 asyncio_mode = "auto"
+markers = [
+    "live: end-to-end tests that call real external APIs (deselect with '-m not live')",
+]
 
 [tool.coverage.run]
 source = ["app"]

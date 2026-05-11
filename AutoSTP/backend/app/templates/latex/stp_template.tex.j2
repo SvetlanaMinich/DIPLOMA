@@ -1,0 +1,232 @@
+%% AutoSTP — LaTeX template per STP 01-2024
+%% Generated automatically; do not edit manually.
+\documentclass[a4paper,<< font_size_pt >>pt,oneside]{article}
+
+% ========== Language & Fonts ==========
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+\usepackage{fontspec}
+\setmainfont{<<- font_family ->>}
+
+% ========== Page Geometry ==========
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=<< margin_left_mm >>mm,
+  right=<< margin_right_mm >>mm,
+  top=<< margin_top_mm >>mm,
+  bottom=<< margin_bottom_mm >>mm,
+  headheight=15pt,
+  includefoot
+}
+
+% ========== Line Spacing ==========
+\usepackage{setspace}
+\linespread{<<- line_spread ->>}
+
+% ========== Paragraph Indent ==========
+\usepackage{indentfirst}
+\setlength{\parindent}{<<- paragraph_indent_mm ->>mm}
+\setlength{\parskip}{0pt}
+
+% ========== Alignment ==========
+<% if text_alignment == 'justify' -%>
+\usepackage{ragged2e}
+\justifying
+<% endif -%>
+
+% ========== Page Numbering ==========
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead{}
+<% if page_number_pos == 'bottom_right' -%>
+\fancyfoot[R]{\thepage}
+<% elif page_number_pos == 'bottom_center' -%>
+\fancyfoot[C]{\thepage}
+<% elif page_number_pos == 'bottom_left' -%>
+\fancyfoot[L]{\thepage}
+<% endif -%>
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ========== Section Heading Styles (titlesec) ==========
+\usepackage{titlesec}
+
+% Level 1 - sections
+\titleformat{\section}[block]
+  {\normalfont
+   <% if numbered_heading_bold -%>\bfseries<% endif -%>
+   \fontsize{<<- heading_font_size_pt ->>}{<<- heading_font_size_pt ->>}\selectfont}
+  {\thesection}
+  {1em}
+  {}
+
+<% if heading_level2_defined -%>
+% Level 2 - subsections
+\titleformat{\subsection}[block]
+  {\normalfont\bfseries\fontsize{<<- heading2_font_size_pt ->>}{<<- heading2_font_size_pt ->>}\selectfont}
+  {\thesubsection}
+  {1em}
+  {}
+<% endif -%>
+
+<% if heading_level3_defined -%>
+% Level 3 - subsubsections
+\titleformat{\subsubsection}[block]
+  {\normalfont\bfseries\fontsize{<<- heading3_font_size_pt ->>}{<<- heading3_font_size_pt ->>}\selectfont}
+  {\thesubsubsection}
+  {1em}
+  {}
+<% endif -%>
+
+% Spacing around headings
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+
+% Unnumbered heading command (centered)
+\newcommand{\unnsec}[1]{%
+  \vspace*{1\baselineskip}%
+  \begin{center}%
+    \normalfont
+    <% if unnumbered_heading_bold -%>\bfseries<% endif -%>
+    \fontsize{<<- heading_font_size_pt ->>}{<<- heading_font_size_pt ->>}\selectfont
+    <% if unnumbered_uppercase -%>\MakeUppercase{#1}<% else -%>#1<% endif -%>%
+  \end{center}%
+}
+
+% ========== Table of Contents ==========
+\usepackage{tocloft}
+<% if toc_title -%>
+\renewcommand{\contentsname}{<<- toc_title ->>}
+<% endif -%>
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+
+% ========== Tables ==========
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+
+% ========== Images ==========
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup[figure]{
+  labelfont=bf,
+  labelsep=endash,
+  justification=centering
+}
+\captionsetup[table]{
+  labelfont=bf,
+  labelsep=endash,
+  justification=raggedright,
+  singlelinecheck=off
+}
+
+% ========== Lists ==========
+\usepackage{enumitem}
+\setlist[itemize]{label=<< simple_list_marker >>}
+\setlist[enumerate]{label=\arabic*.}
+
+% ========== Hyperref (last!) ==========
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black,
+  pdftitle={<<- pdf_title ->>}
+}
+
+% ========== Counters ==========
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% =====================================================
+\begin{document}
+% =====================================================
+
+<% for section in sections -%>
+<% if section.new_page and not loop.first -%>
+\newpage
+<% endif -%>
+
+<% if section.is_unnumbered -%>
+<% if section.add_to_toc -%>
+\phantomsection
+\addcontentsline{toc}{section}{<<- section.title_escaped ->>}
+<% endif -%>
+\unnsec{<<- section.title_escaped ->>}
+<% else -%>
+<% if section.level == 1 -%>
+\section{<<- section.title_escaped ->>}
+<% elif section.level == 2 -%>
+\subsection{<<- section.title_escaped ->>}
+<% elif section.level == 3 -%>
+\subsubsection{<<- section.title_escaped ->>}
+<% else -%>
+\section{<<- section.title_escaped ->>}
+<% endif -%>
+<% endif -%>
+
+<% for para in section.paragraphs -%>
+<% if para.is_table -%>
+<% if para.table_caption -%>
+\captionof{table}{<<- para.table_caption ->>}
+<% endif -%>
+\begin{tabular}{|<% for _ in para.table_columns -%>l|<% endfor -%>}
+\hline
+<% for row in para.table_rows -%>
+<% for cell in row -%><< cell >><% if not loop.last %> & <% endif %><% endfor -%> \\
+\hline
+<% endfor -%>
+\end{tabular}
+\vspace{1\baselineskip}
+
+<% elif para.is_image -%>
+\begin{figure}[H]
+\centering
+<% if para.image_caption -%>
+\caption{<<- para.image_caption ->>}
+<% endif -%>
+\end{figure}
+<% elif para.is_list -%>
+<% if para.list_type == 'simple' -%>
+\begin{itemize}
+<% for item in para.items -%>
+\item << item >>
+<% endfor -%>
+\end{itemize}
+<% elif para.list_type == 'numbered' -%>
+\begin{enumerate}
+<% for item in para.items -%>
+\item << item >>
+<% endfor -%>
+\end{enumerate}
+<% endif -%>
+<% else -%>
+<< para.text >>
+
+<% endif -%>
+<% endfor -%>
+<% endfor -%>
+
+<% if references -%>
+\newpage
+\phantomsection
+\addcontentsline{toc}{section}{<<- references_title ->>}
+\unnsec{<<- references_title ->>}
+\begin{enumerate}[label={[\arabic*]}]
+<% for ref in references -%>
+\item << ref.text >>
+<% endfor -%>
+\end{enumerate}
+<% endif -%>
+
+\end{document}

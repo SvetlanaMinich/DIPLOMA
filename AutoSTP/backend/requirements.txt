@@ -11,7 +11,7 @@ alembic
 
 # Authentication and security
 python-jose[cryptography]
-passlib[bcrypt]
+bcrypt
 python-dotenv
 
 # Pydantic and validation
@@ -25,8 +25,16 @@ openai
 # Document processing
 python-docx
 PyPDF2
+pdfplumber
 reportlab
+
+# Rate limiting
+slowapi
+
+# Templating
+jinja2
 
 # Testing
 pytest
 pytest-asyncio
+pytest-mock

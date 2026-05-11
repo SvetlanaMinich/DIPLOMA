@@ -21,6 +21,8 @@ class AuditAction(str, PyEnum):
     DOCUMENT_UPLOAD = "document_upload"
     DOCUMENT_DELETE = "document_delete"
     DOCUMENT_EXPORT = "document_export"
+    DOCUMENT_SEGMENT = "document_segment"
+    DOCUMENT_FORMAT = "document_format"
     TEMPLATE_CREATE = "template_create"
     TEMPLATE_UPDATE = "template_update"
     TEMPLATE_DELETE = "template_delete"
