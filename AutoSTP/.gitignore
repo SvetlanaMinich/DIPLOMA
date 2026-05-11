@@ -51,6 +51,7 @@ alembic/
 # Logs
 *.log
 logs/
+.claude/
 
 # OS
 .DS_Store
