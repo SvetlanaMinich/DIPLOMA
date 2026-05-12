@@ -138,26 +138,5 @@ tests/test_models.py::test_create_session PASSED
 tests/test_models.py::test_create_audit_log PASSED
 tests/test_models.py::test_user_documents_relationship PASSED
 
-11 passed in X.XXs
+YYY passed in X.XXs
 ```
-
-## Остановка
-
-```bash
-# Остановить все контейнеры
-docker-compose down
-
-# Остановить и удалить volumes (удаляет данные БД)
-docker-compose down -v
-
-# Остановить и удалить все (контейнеры, networks, volumes, images)
-docker-compose down -v --rmi all
-```
-
-## Следующие шаги
-
-После успешной проверки:
-
-1. ✅ Изучить документацию: [STAGE_1_INFRASTRUCTURE.md](docs/STAGE_1_INFRASTRUCTURE.md)
-2. ✅ Прочитать отчет о завершении: [STAGE_1_COMPLETION_REPORT.md](docs/STAGE_1_COMPLETION_REPORT.md)
-3. 🚀 Перейти к Этапу 2: Аутентификация и авторизация
